@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;500;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Enhanced Design System for Bolt */
+:root {
+  /* Dark theme optimized for social media */
+  --background: 220 13% 9%; /* Rich dark background */
+  --foreground: 210 40% 98%; /* Pure white text */
+  --card: 220 13% 11%; /* Slightly lighter card background */
+  --card-foreground: 210 40% 98%; /* White text on cards */
+  --popover: 220 13% 9%; /* Dark popover background */
+  --popover-foreground: 210 40% 98%; /* White popover text */
+  --primary: 0 84% 60%; /* Vibrant red primary (#dc2626) */
+  --primary-foreground: 210 40% 98%; /* White text on primary */
+  --secondary: 45 93% 47%; /* Warm amber accent (#f59e0b) */
+  --secondary-foreground: 220 13% 9%; /* Dark text on secondary */
+  --muted: 215 13% 34%; /* Muted gray for subtle elements */
+  --muted-foreground: 210 40% 85%; /* Light gray for muted text */
+  --accent: 45 93% 47%; /* Amber accent color */
+  --accent-foreground: 220 13% 9%; /* Dark text on accent */
+  --destructive: 0 84% 60%; /* Red for destructive actions */
+  --destructive-foreground: 210 40% 98%; /* White text on destructive */
+  --border: 215 27% 17%; /* Subtle border color */
+  --input: 215 27% 17%; /* Input field background */
+  --ring: 0 84% 60%; /* Focus ring color (primary) */
+  --radius: 0.75rem; /* Rounded corners */
+}
+
+/* Light theme for toggle functionality */
+.light {
+  --background: 0 0% 100%; /* Pure white background */
+  --foreground: 220 13% 9%; /* Dark text */
+  --card: 0 0% 100%; /* White card background */
+  --card-foreground: 220 13% 9%; /* Dark text on cards */
+  --popover: 0 0% 100%; /* White popover background */
+  --popover-foreground: 220 13% 9%; /* Dark popover text */
+  --primary: 0 84% 60%; /* Same vibrant red */
+  --primary-foreground: 210 40% 98%; /* White text on primary */
+  --secondary: 45 93% 47%; /* Same amber accent */
+  --secondary-foreground: 220 13% 9%; /* Dark text on secondary */
+  --muted: 210 40% 96%; /* Light gray for muted elements */
+  --muted-foreground: 215 13% 34%; /* Dark gray for muted text */
+  --accent: 45 93% 47%; /* Same amber accent */
+  --accent-foreground: 220 13% 9%; /* Dark text on accent */
+  --destructive: 0 84% 60%; /* Same red for destructive */
+  --destructive-foreground: 210 40% 98%; /* White text on destructive */
+  --border: 220 13% 91%; /* Light border color */
+  --input: 220 13% 91%; /* Light input background */
+  --ring: 0 84% 60%; /* Same focus ring */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Custom component styles for enhanced UX */
+  .glass-effect {
+    @apply backdrop-blur-md bg-background/80 border border-border/50;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+
+  .smooth-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .post-card {
+    @apply bg-card border border-border rounded-lg p-4 smooth-transition hover:shadow-md hover:border-primary/20;
+  }
+
+  .nav-item {
+    @apply flex flex-col items-center gap-1 p-2 rounded-lg smooth-transition hover:bg-accent/10;
+  }
+
+  .nav-item.active {
+    @apply text-primary bg-primary/10;
+  }
+
+  /* Added scrollbar hiding utilities for video feed */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Added text shadow utility for video overlays */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Added line clamp utility for text truncation */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Scrollbar styling for better aesthetics */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+/* Custom animations for enhanced interactions */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 0.6s ease-in-out;
+}
+
+/* Focus styles for accessibility */
+.focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
