@@ -23,20 +23,24 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      // Token expired or invalid, redirect to login
-      localStorage.removeItem("bolt-token")
-      window.location.href = "/login"
+    if (error.response) {
+      const { status, data } = error.response
+
+      // Handle expired token specifically
+      if (status === 401 && (data?.message === "jwt expired" || data?.name === "TokenExpiredError")) {
+        localStorage.removeItem("bolt-token")
+        window.location.href = "/login"
+      }
+
+      // Handle other unauthorized cases (invalid token, no token, etc.)
+      if (status === 401) {
+        localStorage.removeItem("bolt-token")
+        window.location.href = "/login"
+      }
     }
     return Promise.reject(error)
   },
 )
-
-/**
- * BACKEND INTEGRATION REQUIRED:
- * All API endpoints below need to be implemented on the backend
- * Expected backend structure: Express.js + MongoDB/PostgreSQL
- */
 
 // Authentication API endpoints
 export const authAPI = {

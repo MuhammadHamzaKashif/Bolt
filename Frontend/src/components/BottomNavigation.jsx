@@ -26,12 +26,12 @@ function BottomNavigation() {
       label: "Bolts",
       isActive: location.pathname === "/bolts",
     },
-    {
-      path: "/messages",
-      icon: MessageCircle,
-      label: "Messages",
-      isActive: location.pathname === "/messages",
-    },
+    // {
+    //   path: "/messages",
+    //   icon: MessageCircle,
+    //   label: "Messages",
+    //   isActive: location.pathname === "/messages",
+    // },
     {
       path: `/profile/${user?.name}`,
       icon: User,
